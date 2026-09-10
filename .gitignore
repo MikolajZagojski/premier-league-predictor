@@ -1,0 +1,35 @@
+# --- Environment / secrets ---
+.env
+.venv/
+venv/
+env/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# --- dbt ---
+dbt/**/target/
+dbt/**/dbt_packages/
+dbt/**/logs/
+dbt/**/*.duckdb
+
+# --- ML models---
+models_store/
+*.joblib
+*.pkl
+
+# --- Docker / data ---
+data/
+
+# --- IDE ---
+.vscode/
+.idea/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
