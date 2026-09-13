@@ -6,6 +6,7 @@ from minio_uploader import get_client, ensure_bucket_exists, upload_json_to_mini
 BUCKET_NAME = 'football-data'
 
 def main():
+    """Fetch matches data from footballdata.io and upload it to Minio."""
     minio_client = get_client()
     ensure_bucket_exists(minio_client, BUCKET_NAME)
 

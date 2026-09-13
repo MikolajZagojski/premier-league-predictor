@@ -4,9 +4,11 @@ import json
 from dotenv import load_dotenv
 from minio import Minio
 from minio.error import S3Error
+
 load_dotenv()
 
 def get_client() -> Minio:
+    """Create a Minio client configured from enviroment variables."""
     client = Minio(
         os.getenv('MINIO_ENDPOINT'),
         access_key = os.getenv('MINIO_ROOT_USER'),
@@ -16,7 +18,7 @@ def get_client() -> Minio:
     return client
 
 def upload_json_to_minio(client: Minio, bucket_name: str, object_name: str, payload: dict):
-
+    """Serialize a dict to JSON and upload it to a Minio as an object."""
     body = json.dumps(payload,ensure_ascii=False).encode('utf-8')
     client.put_object(
         bucket_name,
@@ -27,6 +29,7 @@ def upload_json_to_minio(client: Minio, bucket_name: str, object_name: str, payl
    )
 
 def ensure_bucket_exists(client: Minio, bucket_name: str):
+    """Check if a bucket exists in Minio, and create it if it does not."""
     if not client.bucket_exists(bucket_name):
         client.make_bucket(bucket_name)
         print(f'Created bucket {bucket_name}')
